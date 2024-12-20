@@ -9,6 +9,7 @@ const winPopup = document.querySelector(".winPopup")
 var cardsTurned = 0, moves = null
 const movesSpan = document.querySelector("#moves")
 const timeSpan = document.querySelector("#time")
+const container = document.querySelector(".container")
 
 const shuffleEmojis = () => {
     for(let i=0; i<15; i++){
@@ -17,6 +18,16 @@ const shuffleEmojis = () => {
         emojis[i] = emojis[randomIndex]
         emojis[randomIndex] = temp
     }
+}
+
+const showPopup = () => {
+    container.style.filter = "blur(8px)"
+    winPopup.style.display = "block"
+}
+
+const hidePopup = () => {
+    container.style.filter = "blur(0px)"
+    winPopup.style.display = "none"
 }
 
 const reveal = (card, emoji) => {
@@ -39,7 +50,7 @@ const resetGame = () => {
     cards.forEach((card) => {
         cover(card)
     })
-    winPopup.style.display = "none"
+    hidePopup()
     cardsTurned = 0
     moves = 0
     lastClickedDiv=null
@@ -58,7 +69,7 @@ const gameWon = () => {
         origin: {x:1, y: 0.9 },
     });
     movesSpan.innerText = moves
-    winPopup.style.display = "block"
+    showPopup()
     // resetGame()
 }
 

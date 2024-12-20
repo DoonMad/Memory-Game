@@ -35,7 +35,7 @@ h1, h2{
 }
 
 h2{
-    font-size: 2.5vw;   
+    font-size: 2vw;   
 }
 
 .grid{
@@ -66,6 +66,7 @@ h2{
     background-color: #093a2f;
     text-align: center;
     border-radius: 10%;
+    padding: 1%;
     /* border-top-left-radius: 10%;
     border-bottom-right-radius: 10%; */
     
@@ -83,11 +84,18 @@ h2{
     color: white;
     background-color: rgb(27, 79, 67);
     border-radius: 1em;
-    margin: 1% 10%;
+    margin: 3% 0%;
     /* height: 50%; */
     height: 50%;
     padding: 5%;
-    font-size: 1.5vw;
+    font-size: 1.3vw;
+}
+
+.popup-buttons{
+    /* display: flex; */
+    /* justify-content: space-around; */
+    margin-top: 5%;
+    /* vertical-align: middle; */
 }
 
 
@@ -105,9 +113,20 @@ button{
 }
 
 .playAgain{
-    margin-top: 3%;
-    font-size: 1.1vw;
+    margin: 3%;
+    font-size: 1vw;
     padding: 0.9vw;
+}
+
+.popup-heading{
+    display: flex;
+    justify-content: center;
+}
+
+#close-popup{
+    background-color: #093a2f;
+    color: #fff;
+    padding: 0px;
 }
 
 button:hover{

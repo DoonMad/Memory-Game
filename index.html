@@ -13,12 +13,17 @@
         <button class="reset">RESET GAME</button>
     </div>
     <div class="winPopup">
-        <h2>YOU WON!</h2>
+        <div class="popup-heading">
+            <h2>YOU WON!</h2>
+            <button id="close-popup">❌</button>
+        </div>
         <div class="stats">
             <p>Time: <span id="time"></span> seconds</p>
             <p>Moves: <span id="moves"></span></p>
         </div>
-        <button class="playAgain">PLAY AGAIN</button>
+        <div class="popup-buttons">
+            <button class="playAgain">PLAY AGAIN</button>
+        </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0.3/tsparticles.confetti.bundle.min.js"></script>
     <script src="script.js"></script>
