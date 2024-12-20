@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Salsa&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'salsa', 'cursive';
+}
+
+body{
+    background-color: #093a2f;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container{
+    background-color: #0d614e;
+    width: 40vw;
+    height: 90vh;
+    /* margin-top: 50px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+}
+
+h1, h2{
+    color: #fff;
+    font-size: 3vw;
+    margin: 0;
+    font-family: 'Salsa', cursive;
+}
+
+h2{
+    font-size: 2.5vw;   
+}
+
+.grid{
+    display: grid;
+    grid-template-columns: repeat(4,6vw);
+    grid-template-rows: repeat(4,13vh);
+    padding: 25px;
+    gap: 10px;
+}
+
+.card{
+    background-color: #229b7f;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3vw;
+    content: '⬆️';
+    transition: 0.5s;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.winPopup{
+    position: fixed;
+    width: 20%;
+    height: 35%;
+    display:none;
+    background-color: #093a2f;
+    text-align: center;
+    border-radius: 10%;
+    /* border-top-left-radius: 10%;
+    border-bottom-right-radius: 10%; */
+    
+    /* justify-content: center;
+    align-items: center;
+    margin: 0 auto; */
+    /* visibility: hidden; */
+    /* display:initial; */
+    /* margin: -300px; */
+    /* z-index: 1; */
+}
+
+.stats{
+    box-sizing: border-box;
+    color: white;
+    background-color: rgb(27, 79, 67);
+    border-radius: 1em;
+    margin: 1% 10%;
+    /* height: 50%; */
+    height: 50%;
+    padding: 5%;
+    font-size: 1.5vw;
+}
+
+
+button{
+    background-color: #fff;
+    color: #264c3d;
+    border: none;
+    outline: none;
+    font-weight: 700;
+    font-size: 1.2vw;
+    padding: 1vw;
+    cursor: pointer;
+    font-family: 'Salsa', cursive;
+    border-radius: 5%;
+}
+
+.playAgain{
+    margin-top: 3%;
+    font-size: 1.1vw;
+    padding: 0.9vw;
+}
+
+button:hover{
+    background-color: #ffffffd2;
+}
