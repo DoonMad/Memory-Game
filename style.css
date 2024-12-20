@@ -16,6 +16,7 @@ body{
 }
 
 .container{
+    /* position: fixed; */
     background-color: #0d614e;
     width: 40vw;
     height: 90vh;
@@ -25,6 +26,25 @@ body{
     justify-content: center;
     align-items: center;
     border-radius: 3px;
+}
+
+.tracker-div{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 20vw;
+    padding: 10px;
+    background-color: #229b7f;
+    border-radius: 5px;
+    /* margin-left: 10vw; */
+}
+
+.tracker-para{
+    /* color: #fff; */
+    font-size: 1.5vw;
+    margin: 0;
+    font-family: 'Salsa', cursive;
+    width: 100%;
 }
 
 h1, h2{

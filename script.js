@@ -6,10 +6,12 @@ const reset = document.querySelector(".reset")
 const playAgain = document.querySelector(".playAgain")
 const grid = document.querySelector(".grid")
 const winPopup = document.querySelector(".winPopup")
-var cardsTurned = 0, moves = null
-const movesSpan = document.querySelector("#moves")
-const timeSpan = document.querySelector("#time")
+const movesSpan = document.querySelector("#final-moves")
+const timeSpan = document.querySelector("#final-time")
 const container = document.querySelector(".container")
+const currentMoves = document.querySelector("#current-moves")
+const currentTime = document.querySelector("#current-time")
+var cardsTurned = 0, moves = null, time=0, interval=null
 
 const shuffleEmojis = () => {
     for(let i=0; i<15; i++){
@@ -54,6 +56,13 @@ const resetGame = () => {
     cardsTurned = 0
     moves = 0
     lastClickedDiv=null
+    time = 0
+    currentTime.innerText = time
+    currentMoves.innerText = moves
+    if(interval!==null){
+        clearInterval(interval)
+        interval=null
+    }
 }
 
 const gameWon = () => {
@@ -69,6 +78,12 @@ const gameWon = () => {
         origin: {x:1, y: 0.9 },
     });
     movesSpan.innerText = moves
+    timeSpan.innerText = time
+    currentTime.innerText = time
+    if(interval!==null){
+        clearInterval(interval)
+        interval=null
+    }
     showPopup()
     // resetGame()
 }
@@ -81,6 +96,12 @@ const createCards = () => {
         div.id = i
         grid.appendChild(div)
         div.addEventListener("click", () => {
+            if(moves===null && lastClickedDiv===null){
+                interval = setInterval(()=>{
+                    time++;
+                    currentTime.innerText = time
+                }, 1000)
+            }
             if(revealedCards[div.id]===1){
                 return
             }
@@ -88,6 +109,7 @@ const createCards = () => {
             if(lastClickedDiv!==null){
                 // console.log(lastClickedDiv.innerText)
                 moves+=1
+                currentMoves.innerText = moves
                 if(lastClickedDiv.innerText!==div.innerText){
                     const clickedDiv = lastClickedDiv
                     const currentDiv = div
