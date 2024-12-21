@@ -11,6 +11,7 @@ const timeSpan = document.querySelector("#final-time")
 const outerContainer = document.querySelector(".outer-container")
 const currentMoves = document.querySelector("#current-moves")
 const currentTime = document.querySelector("#current-time")
+const closePupupButton = document.querySelector(".close-popup")
 var cardsTurned = 0, moves = 0, time=0, interval=null
 
 const shuffleEmojis = () => {
@@ -23,13 +24,13 @@ const shuffleEmojis = () => {
 }
 
 const showPopup = () => {
-    outerContainer.style.filter = "blur(8px)"
+    outerContainer.classList.add("blur")
     winPopup.style.display = "flex"
     winPopup.style.animation = "popupAnimation 0.2s ease-out forwards"
 }
 
 const hidePopup = () => {
-    outerContainer.style.filter = "blur(0px)"
+    outerContainer.classList.remove("blur")
     winPopup.style.display = "none"
 }
 
@@ -153,6 +154,10 @@ reset.addEventListener("click", () => {
 
 playAgain.addEventListener("click", () => {
     resetGame()
+})
+
+closePupupButton.addEventListener("click", () => {
+    hidePopup()
 })
 
 createCards()

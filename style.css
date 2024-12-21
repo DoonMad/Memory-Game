@@ -113,7 +113,6 @@ h2{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    /* z-index: 1; */
     width: 20%;
     height: 35%;
     display:none;
@@ -121,17 +120,7 @@ h2{
     text-align: center;
     border-radius: 10%;
     padding: 1%;
-    /* animation: popupAnimation 1s ease-out forwards; */
-    /* border-top-left-radius: 10%;
-    border-bottom-right-radius: 10%; */
-    
-    /* justify-content: center;
-    align-items: center;
-    margin: 0 auto; */
-    /* visibility: hidden; */
-    /* display:initial; */
-    /* margin: -300px; */
-    /* z-index: 1; */
+    box-shadow: 3px 5px 10px rgba(0, 0, 0, 0.6);
 }
 
 .stats{
@@ -167,6 +156,13 @@ button{
     border-radius: 5%;
 }
 
+.blur{
+    filter: blur(5px);
+    transition: "filter 0.2s ease-out";
+    pointer-events: none;
+    user-select: none;
+}
+
 .playAgain{
     margin: 3%;
     font-size: 1vw;
@@ -178,9 +174,8 @@ button{
     justify-content: center;
 }
 
-#close-popup{
+.close-popup{
     background-color: #093a2f;
-    color: #fff;
     padding: 0px;
 }
 
