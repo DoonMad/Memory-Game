@@ -8,10 +8,10 @@ const grid = document.querySelector(".grid")
 const winPopup = document.querySelector(".winPopup")
 const movesSpan = document.querySelector("#final-moves")
 const timeSpan = document.querySelector("#final-time")
-const container = document.querySelector(".container")
+const outerContainer = document.querySelector(".outer-container")
 const currentMoves = document.querySelector("#current-moves")
 const currentTime = document.querySelector("#current-time")
-var cardsTurned = 0, moves = null, time=0, interval=null
+var cardsTurned = 0, moves = 0, time=0, interval=null
 
 const shuffleEmojis = () => {
     for(let i=0; i<15; i++){
@@ -23,12 +23,13 @@ const shuffleEmojis = () => {
 }
 
 const showPopup = () => {
-    container.style.filter = "blur(8px)"
-    winPopup.style.display = "block"
+    outerContainer.style.filter = "blur(8px)"
+    winPopup.style.display = "flex"
+    winPopup.style.animation = "popupAnimation 0.2s ease-out forwards"
 }
 
 const hidePopup = () => {
-    container.style.filter = "blur(0px)"
+    outerContainer.style.filter = "blur(0px)"
     winPopup.style.display = "none"
 }
 
@@ -77,6 +78,17 @@ const gameWon = () => {
         spread: 800,
         origin: {x:1, y: 0.9 },
     });
+    confetti({
+        particleCount: 300,
+        spread: 800,
+        origin: {x:0, y: 0.1 },
+    });
+
+    confetti({
+        particleCount: 300,
+        spread: 800,
+        origin: {x:1, y: 0.1 },
+    });
     movesSpan.innerText = moves
     timeSpan.innerText = time
     currentTime.innerText = time
@@ -96,7 +108,7 @@ const createCards = () => {
         div.id = i
         grid.appendChild(div)
         div.addEventListener("click", () => {
-            if(moves===null && lastClickedDiv===null){
+            if(moves===0 && lastClickedDiv===null){
                 interval = setInterval(()=>{
                     time++;
                     currentTime.innerText = time
