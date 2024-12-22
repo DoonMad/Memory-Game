@@ -22,6 +22,7 @@ const popupTimePara = document.querySelector(".popup-time-para")
 const popupMovesPara = document.querySelectorAll(".popup-moves-para")
 const flipAudio = new Audio("/media/flip.wav")
 const correctAudio = new Audio("/media/correct.wav")
+const confettiAudio = new Audio("/media/confetti.mp3")
 var cardsTurned = 0, moves = 0, time=0, interval=null, bestTime=null, bestMoves=null, misses=0
 
 const shuffleEmojis = () => {
@@ -83,6 +84,7 @@ const resetGame = () => {
 }
 
 const celebrate = () => {
+    confettiAudio.play()
     confetti({
         particleCount: 300,
         spread: 800,
