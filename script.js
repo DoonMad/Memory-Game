@@ -20,6 +20,8 @@ const movesInBestTime = document.querySelector("#moves-in-best-time")
 const closePupupButton = document.querySelector(".close-popup")
 const popupTimePara = document.querySelector(".popup-time-para")
 const popupMovesPara = document.querySelectorAll(".popup-moves-para")
+const flipAudio = new Audio("/media/flip.wav")
+const correctAudio = new Audio("/media/correct.wav")
 var cardsTurned = 0, moves = 0, time=0, interval=null, bestTime=null, bestMoves=null, misses=0
 
 const shuffleEmojis = () => {
@@ -140,42 +142,43 @@ const createCards = () => {
         div.id = i
         grid.appendChild(div)
         div.addEventListener("click", () => {
-            if(moves===0 && lastClickedDiv===null){
-                interval = setInterval(()=>{
-                    time++;
-                    currentTime.innerText = time
-                }, 1000)
-            }
-            if(revealedCards[div.id]===1){
-                return
-            }
-            reveal(div, emojis[i])
-            if(lastClickedDiv!==null){
-                // console.log(lastClickedDiv.innerText)
-                moves+=1
-                currentMoves.innerText = moves
-                if(lastClickedDiv.innerText!==div.innerText){
-                    misses++
-                    currentMisses.innerText = misses
-                    const clickedDiv = lastClickedDiv
-                    const currentDiv = div
-                    setTimeout(()=>{
-                        cover(clickedDiv)
-                        cover(currentDiv)
-                    }, 500)
+            if(revealedCards[div.id]!==1){
+                flipAudio.play()
+                if(moves===0 && lastClickedDiv===null){
+                    interval = setInterval(()=>{
+                        time++;
+                        currentTime.innerText = time
+                    }, 1000)
                 }
-                else{
-                    cardsTurned+=2
-                    if(cardsTurned===16){
+                reveal(div, emojis[i])
+                if(lastClickedDiv!==null){
+                    // console.log(lastClickedDiv.innerText)
+                    moves+=1
+                    currentMoves.innerText = moves
+                    if(lastClickedDiv.innerText!==div.innerText){
+                        misses++
+                        currentMisses.innerText = misses
+                        const clickedDiv = lastClickedDiv
+                        const currentDiv = div
                         setTimeout(()=>{
-                            gameWon()
+                            cover(clickedDiv)
+                            cover(currentDiv)
                         }, 500)
                     }
+                    else{
+                        correctAudio.play()
+                        cardsTurned+=2
+                        if(cardsTurned===16){
+                            setTimeout(()=>{
+                                gameWon()
+                            }, 500)
+                        }
+                    }
+                    lastClickedDiv=null
                 }
-                lastClickedDiv=null
-            }
-            else{
-                lastClickedDiv=div
+                else{
+                    lastClickedDiv=div
+                }
             }
         })
     }
