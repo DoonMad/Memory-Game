@@ -16,6 +16,15 @@
     }
 }
 
+@keyframes zoom {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+  }
+
 body{
     background-color: #093a2f;
     /* height: 100vh;
@@ -49,8 +58,33 @@ body{
 .container-right{
     height: 90vh;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    /* justify-content: space-between; */
+    /* justify-content: center; */
     align-items: center;
+}
+
+.best-records{
+    display: flex;
+    flex-direction: column;
+    padding: 5% 5%;
+    border-radius: 3px;
+    /* background-color: #229b7f; */
+    background-color: #0d614e;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.best-time-div, .best-moves-div{
+    display: flex;
+    flex-direction: column;
+    background-color: #229b7f;
+    margin: 3% 0%;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    border-radius: 5px;
+    /* justify-content: space-between; */
+    /* margin-bottom: 5%; */
 }
 
 .tracker-div{
@@ -65,25 +99,33 @@ body{
     /* margin-left: 10vw; */
 }
 
+.best-records-h3{
+    align-self: center;
+}
+
 .tracker-para{
     color: #fff;
     display: inline-block;
     /* background-color: red; */
+    width: max-content;
+    align-self: center;
     font-size: 1.5vw;
     margin: 0;
     font-family: 'Salsa', cursive;
     /* width: 100%; */
 }
 
-h1, h2{
+h1, h2, h3{
     color: #fff;
     font-size: 3vw;
     margin: 0;
     font-family: 'Salsa', cursive;
 }
 
-h2{
-    font-size: 2vw;   
+h3{
+    font-style: normal;
+    font-weight: 100;
+    font-size: 1.5vw;   
 }
 
 .grid{
@@ -118,7 +160,7 @@ h2{
     display:none;
     background-color: #093a2f;
     text-align: center;
-    border-radius: 10%;
+    border-radius: 5px;
     padding: 1%;
     box-shadow: 3px 5px 10px rgba(0, 0, 0, 0.6);
 }
@@ -127,12 +169,13 @@ h2{
     box-sizing: border-box;
     color: white;
     background-color: rgb(27, 79, 67);
-    border-radius: 1em;
+    border-radius: 6px;
     margin: 3% 0%;
     /* height: 50%; */
     height: 50%;
     padding: 5%;
     font-size: 1.3vw;
+    /* animation: zoom 1s 3; */
 }
 
 .popup-buttons{
@@ -174,11 +217,22 @@ button{
     justify-content: center;
 }
 
+.popup-heading h2{
+    color: #fff;
+    font-size: 2vw;
+    margin: 0;
+    font-family: 'Salsa', cursive;
+}
+
 .close-popup{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    /* margin-left: auto; */
     background-color: #093a2f;
     padding: 0px;
 }
 
 button:hover{
-    background-color: #ffffffd2;
+    opacity: 0.8;
 }

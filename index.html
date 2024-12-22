@@ -19,18 +19,31 @@
         <div class="container-right">
             <div class="tracker-div">
                 <p class="tracker-para">Time: <span id="current-time">0</span> seconds</p>
-                <p class="tracker-para">Moves: <span id="current-moves">0</span></p>
+                <p class="tracker-para">Total Moves: <span id="current-moves">0</span></p>
+                <p class="tracker-para">Misses: <span id="current-misses">0</span></p>
+            </div>
+            <div class="best-records">
+                <h1>Best Records</h1>
+                <div class="best-time-div">
+                    <h3 class="best-records-h3">Best time : <span id="best-time">_</span> seconds</h2>
+                    <p class="tracker-para">in <span id="moves-in-best-time">_</span> moves</p>
+                </div>
+                <div class="best-moves-div">
+                    <h3 class="best-records-h3">Fewest Moves : <span id="best-moves">_</span></h2>
+                    <p class="tracker-para">in <span id="time-for-best-moves">_</span> seconds</p>
+                </div>
             </div>
         </div>
     </div>
     <div class="winPopup">
         <div class="popup-heading">
-            <h2>YOU WON!</h2>
+            <h2>Congrats!</h2>
             <button class="close-popup">❌</button>
         </div>
         <div class="stats">
-            <p>Time: <span id="final-time"></span> seconds</p>
-            <p>Moves: <span id="final-moves"></span></p>
+            <p class="popup-time-para">Time: <span id="final-time"></span> seconds</p>
+            <p class="popup-moves-para">Total Moves: <span id="final-moves"></span></p>
+            <p class="popup-moves-para">Misses: <span id="final-misses"></span></p>
         </div>
         <div class="popup-buttons">
             <button class="playAgain">PLAY AGAIN</button>
