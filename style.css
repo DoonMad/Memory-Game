@@ -115,6 +115,16 @@ body{
     /* width: 100%; */
 }
 
+.best-time-div p, .best-moves-div p{
+    color: #fff;
+    font-size: 1.3vw;
+    font-style:italic;
+    margin: 0;
+    font-family: 'Salsa', cursive;
+    /* width: 100%; */
+}
+
+
 h1, h2, h3{
     color: #fff;
     font-size: 3vw;

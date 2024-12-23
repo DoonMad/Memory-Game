@@ -14,9 +14,11 @@ const currentMoves = document.querySelector("#current-moves")
 const currentTime = document.querySelector("#current-time")
 const currentMisses = document.querySelector("#current-misses")
 const bestMovesSpan = document.querySelector("#best-moves")
+const missesInBestMoves = document.querySelector("#misses-in-best-moves")
 const timeForBestMoves = document.querySelector("#time-for-best-moves")
 const bestTimeSpan = document.querySelector("#best-time")
 const movesInBestTime = document.querySelector("#moves-in-best-time")
+const missesInBestTime = document.querySelector("#misses-in-best-time")
 const closePupupButton = document.querySelector(".close-popup")
 const popupTimePara = document.querySelector(".popup-time-para")
 const popupMovesPara = document.querySelectorAll(".popup-moves-para")
@@ -69,6 +71,10 @@ const resetGame = () => {
         cover(card)
     })
     hidePopup()
+    popupMovesPara.forEach(para => {
+        para.style.animation = "none"
+    })
+    popupTimePara.style.animation = "none"
     cardsTurned = 0
     moves = 0
     misses = 0
@@ -116,6 +122,7 @@ const gameWon = () => {
         bestTime = time
         bestTimeSpan.innerText = time
         movesInBestTime.innerText = moves
+        missesInBestTime.innerText = misses
     }
     if(bestMoves===null || moves<bestMoves){
         celebrate()
@@ -126,6 +133,7 @@ const gameWon = () => {
         bestMoves = moves
         bestMovesSpan.innerText = moves
         timeForBestMoves.innerText = time
+        missesInBestMoves.innerText = misses
     }
     currentTime.innerText = time
     if(interval!==null){
