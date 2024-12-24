@@ -24,7 +24,7 @@ The Memory Game is a fun, interactive web-based game where players match pairs o
 ## Installation
 1. Clone this repository:
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/DoonMad/Memory-Game
    ```
 2. Navigate to the project directory:
    ```bash
