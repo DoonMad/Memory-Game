@@ -90,11 +90,6 @@ const cover = (card) => {
 const resetGame = () => {  
     createCards()
     hidePopup()
-    setTimeout(() => {
-        cards.forEach((card) => {
-            cover(card);
-        });
-    }, 1);
     popupMovesPara.forEach(para => {
         para.style.animation = "none"
     })
@@ -194,7 +189,7 @@ const createCards = () => {
         root.style.setProperty('--columns', 5);
         root.style.setProperty('--rows', 4);
         root.style.setProperty('--primary-color', '#ffa726');
-        root.style.setProperty('--secondary-color', '#ff7043');
+        root.style.setProperty('--secondary-color', '#c14c27');
         root.style.setProperty('--bg-color', '#4e342e');
         root.style.setProperty('--button-color', '#bf360c');
     }
@@ -202,7 +197,7 @@ const createCards = () => {
         root.style.setProperty('--columns', 6);
         root.style.setProperty('--rows', 4);
         root.style.setProperty('--primary-color', '#e53935');
-        root.style.setProperty('--secondary-color', '#c62828');
+        root.style.setProperty('--secondary-color', '#7c0e0e');
         root.style.setProperty('--bg-color', '#311b1b');
         root.style.setProperty('--button-color', '#8e0000');
     }
