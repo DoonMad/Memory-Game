@@ -7,6 +7,15 @@
     font-family: 'salsa', 'cursive';
 }
 
+:root{
+    --primary-color: #229b7f;
+    --secondary-color: #0d614e;
+    --bg-color: #093a2f;
+    --button-color: #264c3d;
+    --columns: 4;
+    --rows: 4;
+}
+
 @keyframes popupAnimation {
     0% {
         transform: translate(-50%, 100%) scale(0.5);
@@ -26,7 +35,7 @@
   }
 
 body{
-    background-color: #093a2f;
+    background-color: var(--bg-color);
     /* height: 100vh;
     display: flex;
     justify-content: center;
@@ -37,14 +46,14 @@ body{
     height: 100vh;
     width: 100vw;
     display: grid;
-    grid-template-columns: 30vw 40vw 30vw;
+    grid-template-columns: 27.5vw 45vw 27.5vw;
     justify-content: center;
     align-items: center;
 }
 
 .container{
     /* position: fixed; */
-    background-color: #0d614e;
+    background-color: var(--secondary-color);
     width: 40vw;
     height: 90vh;
     /* margin-top: 50px; */
@@ -64,13 +73,22 @@ body{
     align-items: center;
 }
 
+.container-left{
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* justify-content: center; */
+    align-items: center;
+}
+
 .best-records{
     display: flex;
     flex-direction: column;
     padding: 5% 5%;
     border-radius: 3px;
     /* background-color: #229b7f; */
-    background-color: #0d614e;
+    background-color: var(--secondary-color);
     margin-top: auto;
     margin-bottom: auto;
 }
@@ -78,7 +96,7 @@ body{
 .best-time-div, .best-moves-div{
     display: flex;
     flex-direction: column;
-    background-color: #229b7f;
+    background-color: var(--primary-color);
     margin: 3% 0%;
     padding-top: 3%;
     padding-bottom: 3%;
@@ -140,14 +158,14 @@ h3{
 
 .grid{
     display: grid;
-    grid-template-columns: repeat(4,6vw);
-    grid-template-rows: repeat(4,13vh);
+    grid-template-columns: repeat(var(--columns),6vw);
+    grid-template-rows: repeat(var(--rows),13vh);
     padding: 25px;
     gap: 10px;
 }
 
 .card{
-    background-color: #229b7f;
+    background-color: var(--primary-color);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -156,6 +174,10 @@ h3{
     transition: 0.5s;
     border-radius: 5px;
     cursor: pointer;
+}
+
+.flip{
+    transform: rotateY(180deg);
 }
 
 .winPopup{
@@ -168,7 +190,7 @@ h3{
     width: 20%;
     height: 35%;
     display:none;
-    background-color: #093a2f;
+    background-color: var(--bg-color);
     text-align: center;
     border-radius: 5px;
     padding: 1%;
@@ -178,7 +200,7 @@ h3{
 .stats{
     box-sizing: border-box;
     color: white;
-    background-color: rgb(27, 79, 67);
+    background-color: var(--secondary-color);
     border-radius: 6px;
     margin: 3% 0%;
     /* height: 50%; */
@@ -198,7 +220,7 @@ h3{
 
 button{
     background-color: #fff;
-    color: #264c3d;
+    color: var(--button-color);
     border: none;
     outline: none;
     font-weight: 700;
@@ -216,7 +238,7 @@ button{
     user-select: none;
 }
 
-.playAgain{
+.playAgain, .next-level-popup{
     margin: 3%;
     font-size: 1vw;
     padding: 0.9vw;
@@ -239,7 +261,7 @@ button{
     top: 10px;
     right: 10px;
     /* margin-left: auto; */
-    background-color: #093a2f;
+    background-color: var(--bg-color);
     padding: 0px;
 }
 

@@ -9,19 +9,21 @@
 <body>
     <div class="outer-container">
         <div class="container-left">
-
-        </div>
-        <div class="container">
-            <h1>MEMORY GAME</h1>
-            <div class="grid"></div>
-            <button class="reset">RESET GAME</button>
-        </div>
-        <div class="container-right">
             <div class="tracker-div">
                 <p class="tracker-para">Time: <span id="current-time">0</span> seconds</p>
                 <p class="tracker-para">Total Moves: <span id="current-moves">0</span></p>
                 <p class="tracker-para">Misses: <span id="current-misses">0</span></p>
             </div>
+        </div>
+        <div class="container">
+            <h1>MEMORY GAME</h1>
+            <div class="grid"></div>
+            <div class="buttons">
+                <button class="reset">RESET GAME</button>
+                <button class="next-level">NEXT LEVEL</button>
+            </div>
+        </div>
+        <div class="container-right">
             <div class="best-records">
                 <h1>Best Records</h1>
                 <div class="best-time-div">
@@ -49,6 +51,7 @@
         </div>
         <div class="popup-buttons">
             <button class="playAgain">PLAY AGAIN</button>
+            <button class="next-level-popup">NEXT LEVEL</button>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0.3/tsparticles.confetti.bundle.min.js"></script>

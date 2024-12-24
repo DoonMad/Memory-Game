@@ -1,7 +1,20 @@
-let emojis = ["😍", "🥸","💀", "🐦‍🔥","🌊", "🤡","👾", "🐼","😍", "🥸","💀", "🐦‍🔥","🌊", "🤡","👾", "🐼"]
-const revealedCards = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+// let emojis = ["😍", "🥸","💀", "🐦‍🔥","🌊", "🤡","👾", "🐼","😍", "🥸","💀", "🐦‍🔥","🌊", "🤡","👾", "🐼"]
+let emojis = [
+
+    ["😍", "🥸", "💀", "🐦‍🔥", "🌊", "🤡","👾", "🐼","😍", "🥸","💀", "🐦‍🔥","🌊", "🤡","👾", "🐼"],
+    ["😍", "🥸", "💀", "🐦‍🔥", "🌊", "🤡","👾", "🐼","😍", "🥸","💀", "🐦‍🔥","🌊", "🤡","👾", "🐼","🐺", "🍕","🐺", "🍕"],
+    ["😍", "🥸", "💀", "🐦‍🔥", "🌊", "🤡","👾", "🐼","😍", "🥸","💀", "🐦‍🔥","🌊", "🤡","👾", "🐼","🐺", "🍕","🐺", "🍕", "🚗", "💵", "🚗", "💵"]
+]
+var revealedCards = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
 var lastClickedDiv = null
+const root = document.documentElement;
+// const bgColor = getComputedStyle(root).getPropertyValue('--bg-color');
+// const primaryColor = getComputedStyle(root).getPropertyValue('--primary-color');
+// const secondaryColor = getComputedStyle(root).getPropertyValue('--secondary-color');
+// const buttonColor = getComputedStyle(root).getPropertyValue('--button-color');
+// const columns = getComputedStyle(root).getPropertyValue('--columns');
+// const rows = getComputedStyle(root).getPropertyValue('--rows');
 const reset = document.querySelector(".reset")
 const playAgain = document.querySelector(".playAgain")
 const grid = document.querySelector(".grid")
@@ -25,15 +38,34 @@ const popupMovesPara = document.querySelectorAll(".popup-moves-para")
 const flipAudio = new Audio("/media/flip.wav")
 const correctAudio = new Audio("/media/correct.wav")
 const confettiAudio = new Audio("/media/confetti.mp3")
-var cardsTurned = 0, moves = 0, time=0, interval=null, bestTime=null, bestMoves=null, misses=0
+const nextLevelButton = document.querySelector(".next-level")
+const popupNextLevelButton = document.querySelector(".next-level-popup")
+var cardsTurned = 0, moves = 0, time=0, interval=null, misses=0, level=0
+// var bestTime = new Object(), bestMoves = new Object()
+var bestTime = [
+    { time: null, moves: null, misses: 0 },
+    { time: null, moves: null, misses: 0 },
+    { time: null, moves: null, misses: 0 },
+];
+var bestMoves = [
+    { time: null, moves: null, misses: 0 },
+    { time: null, moves: null, misses: 0 },
+    { time: null, moves: null, misses: 0 },
+];
+// bestMoves.time = null, bestMoves.moves = null, bestMoves.misses = 0
 
 const shuffleEmojis = () => {
-    for(let i=0; i<15; i++){
-        const randomIndex = Math.floor(Math.random()*emojis.length);
-        var temp = emojis[i]
-        emojis[i] = emojis[randomIndex]
-        emojis[randomIndex] = temp
+    for(let i=0; i<emojis[level].length-1; i++){
+        const randomIndex = Math.floor(Math.random()*(16+level*4));
+        var temp = emojis[level][i]
+        emojis[level][i] = emojis[level][randomIndex]
+        emojis[level][randomIndex] = temp
     }
+}
+
+const playAudio = (audioElement) => {
+    const clone = audioElement.cloneNode();
+    clone.play();
 }
 
 const showPopup = () => {
@@ -41,8 +73,8 @@ const showPopup = () => {
     timeSpan.innerText = time
     missesSpan.innerText = misses
     outerContainer.classList.add("blur")
-    winPopup.style.display = "flex"
     winPopup.style.animation = "popupAnimation 0.2s ease-out forwards"
+    winPopup.style.display = "flex"
 }
 
 const hidePopup = () => {
@@ -53,24 +85,29 @@ const hidePopup = () => {
 const reveal = (card, emoji) => {
     revealedCards[card.id] = 1
     card.style.backgroundColor = "#fff"
-    card.style.transform = "rotateY(180deg)"
+    // card.style.transform = "rotateY(180deg)"
+    card.classList.toggle("flip")
     card.innerText = emoji
 }
 
 const cover = (card) => {
     revealedCards[card.id] = 0
-    card.style.backgroundColor = "#229b7f"
-    card.style.transform = "rotateY(0deg)"
+    card.style.backgroundColor = "var(--primary-color)";
+    // card.style.transform = "rotateY(0deg)"
+    card.classList.toggle("flip")
     card.innerText = "";
 }
 
 const resetGame = () => {
-    shuffleEmojis()
     const cards = grid.querySelectorAll(".card")
     cards.forEach((card) => {
         cover(card)
     })
+    // console.log("cards covered")    
+    createCards()
+    // console.log("cards created")
     hidePopup()
+    // console.log("popup-hidden")
     popupMovesPara.forEach(para => {
         para.style.animation = "none"
     })
@@ -90,7 +127,10 @@ const resetGame = () => {
 }
 
 const celebrate = () => {
-    confettiAudio.play()
+    playAudio(confettiAudio)
+    revealedCards.forEach(i => {
+        i=0
+    });
     confetti({
         particleCount: 300,
         spread: 800,
@@ -116,24 +156,24 @@ const celebrate = () => {
 }
 
 const gameWon = () => {
-    if(bestTime===null || time<bestTime){
+    if(bestTime[level].time===null || time<bestTime[level].time){
         celebrate()
         popupTimePara.style.animation = "zoom 1s 3"
-        bestTime = time
-        bestTimeSpan.innerText = time
-        movesInBestTime.innerText = moves
-        missesInBestTime.innerText = misses
+        // bestTime.time = time
+        bestTimeSpan.innerText = bestTime[level].time = time
+        movesInBestTime.innerText = bestTime[level].moves = moves
+        missesInBestTime.innerText = bestTime[level].misses = misses
     }
-    if(bestMoves===null || moves<bestMoves){
+    if(bestMoves[level].moves===null || moves<bestMoves[level].moves){
         celebrate()
         popupMovesPara.forEach(para => {
             para.style.animation = "zoom 1s 3"
         })
         // popupMovesPara.style.animation = "zoom 1s 3"
-        bestMoves = moves
-        bestMovesSpan.innerText = moves
-        timeForBestMoves.innerText = time
-        missesInBestMoves.innerText = misses
+        // bestMoves.moves = moves
+        bestMovesSpan.innerText = bestMoves[level].moves = moves
+        timeForBestMoves.innerText = bestMoves[level].time = time
+        missesInBestMoves.innerText = bestMoves[level].misses = misses
     }
     currentTime.innerText = time
     if(interval!==null){
@@ -145,22 +185,71 @@ const gameWon = () => {
 }
 
 const createCards = () => {
+    // console.log("LEVEL = "+level)
+    if(bestMoves[level].moves!==null){
+        bestMovesSpan.innerText = bestMoves[level].moves
+        timeForBestMoves.innerText = bestMoves[level].time
+        missesInBestMoves.innerText = bestMoves[level].misses
+    }
+    else{
+        bestMovesSpan.innerText = "_"
+        timeForBestMoves.innerText = "_"
+        missesInBestMoves.innerText = "_"
+    }
+    if(bestTime[level].time!==null){
+        bestTimeSpan.innerText = bestTime[level].time
+        movesInBestTime.innerText = bestTime[level].moves
+        missesInBestTime.innerText = bestTime[level].misses
+    }
+    else{
+        bestTimeSpan.innerText = "_"
+        movesInBestTime.innerText = "_"
+        missesInBestTime.innerText = "_"
+    }
+    grid.innerHTML = ""
     shuffleEmojis()
-    for(let i=0; i<16; i++){
+    if(level==1){
+        root.style.setProperty('--columns', 5);
+        root.style.setProperty('--rows', 4);
+        root.style.setProperty('--primary-color', '#ffa726');
+        root.style.setProperty('--secondary-color', '#ff7043');
+        root.style.setProperty('--bg-color', '#4e342e');
+        root.style.setProperty('--button-color', '#bf360c');
+    }
+    else if(level==2){
+        root.style.setProperty('--columns', 6);
+        root.style.setProperty('--rows', 4);
+        root.style.setProperty('--primary-color', '#e53935');
+        root.style.setProperty('--secondary-color', '#c62828');
+        root.style.setProperty('--bg-color', '#311b1b');
+        root.style.setProperty('--button-color', '#8e0000');
+    }
+    else{
+        root.style.setProperty('--columns', 4);
+        root.style.setProperty('--rows', 4);
+        root.style.setProperty('--primary-color', '#229b7f');
+        root.style.setProperty('--secondary-color', '#0d614e');
+        root.style.setProperty('--bg-color', '#093a2f');
+        root.style.setProperty('--button-color', '#264c3d');
+    }
+    for(let i=0; i<16+4*level; i++){
         const div=document.createElement("div")
         div.classList.add("card")
         div.id = i
         grid.appendChild(div)
+        cover(div)
         div.addEventListener("click", () => {
+            // console.log(div.id)
+            // console.log(revealedCards[div.id])
             if(revealedCards[div.id]!==1){
-                flipAudio.play()
+                playAudio(flipAudio)
                 if(moves===0 && lastClickedDiv===null){
                     interval = setInterval(()=>{
                         time++;
                         currentTime.innerText = time
                     }, 1000)
                 }
-                reveal(div, emojis[i])
+                reveal(div, emojis[level][i])
                 if(lastClickedDiv!==null){
                     // console.log(lastClickedDiv.innerText)
                     moves+=1
@@ -176,9 +265,9 @@ const createCards = () => {
                         }, 500)
                     }
                     else{
-                        correctAudio.play()
+                        playAudio(correctAudio)
                         cardsTurned+=2
-                        if(cardsTurned===16){
+                        if(cardsTurned===16+4*level){
                             setTimeout(()=>{
                                 gameWon()
                             }, 500)
@@ -192,6 +281,10 @@ const createCards = () => {
             }
         })
     }
+    const cards = grid.querySelectorAll(".card")
+    cards.forEach((card) => {
+        cover(card)
+    })
 }
 
 reset.addEventListener("click", () => {
@@ -204,6 +297,26 @@ playAgain.addEventListener("click", () => {
 
 closePupupButton.addEventListener("click", () => {
     hidePopup()
+})
+
+nextLevelButton.addEventListener("click", () => {
+    level++
+    if(level==3){
+        level=0
+        alert("You have completed all levels. Congratulations!")
+    }
+    resetGame()
+    // createCards()
+})
+
+popupNextLevelButton.addEventListener("click", () => {
+    level++
+    if(level==3){
+        level=0
+        alert("You have completed all levels. Congratulations!")
+    }
+    resetGame()
+    // createCards()
 })
 
 createCards()
