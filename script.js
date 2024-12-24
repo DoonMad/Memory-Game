@@ -1,4 +1,3 @@
-// let emojis = ["😍", "🥸","💀", "🐦‍🔥","🌊", "🤡","👾", "🐼","😍", "🥸","💀", "🐦‍🔥","🌊", "🤡","👾", "🐼"]
 let emojis = [
 
     ["😍", "🥸", "💀", "🐦‍🔥", "🌊", "🤡","👾", "🐼","😍", "🥸","💀", "🐦‍🔥","🌊", "🤡","👾", "🐼"],
@@ -9,12 +8,6 @@ var revealedCards = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 
 var lastClickedDiv = null
 const root = document.documentElement;
-// const bgColor = getComputedStyle(root).getPropertyValue('--bg-color');
-// const primaryColor = getComputedStyle(root).getPropertyValue('--primary-color');
-// const secondaryColor = getComputedStyle(root).getPropertyValue('--secondary-color');
-// const buttonColor = getComputedStyle(root).getPropertyValue('--button-color');
-// const columns = getComputedStyle(root).getPropertyValue('--columns');
-// const rows = getComputedStyle(root).getPropertyValue('--rows');
 const reset = document.querySelector(".reset")
 const playAgain = document.querySelector(".playAgain")
 const grid = document.querySelector(".grid")
@@ -41,7 +34,6 @@ const confettiAudio = new Audio("/media/confetti.mp3")
 const nextLevelButton = document.querySelector(".next-level")
 const popupNextLevelButton = document.querySelector(".next-level-popup")
 var cardsTurned = 0, moves = 0, time=0, interval=null, misses=0, level=0
-// var bestTime = new Object(), bestMoves = new Object()
 var bestTime = [
     { time: null, moves: null, misses: 0 },
     { time: null, moves: null, misses: 0 },
@@ -52,7 +44,6 @@ var bestMoves = [
     { time: null, moves: null, misses: 0 },
     { time: null, moves: null, misses: 0 },
 ];
-// bestMoves.time = null, bestMoves.moves = null, bestMoves.misses = 0
 
 const shuffleEmojis = () => {
     for(let i=0; i<emojis[level].length-1; i++){
@@ -85,7 +76,6 @@ const hidePopup = () => {
 const reveal = (card, emoji) => {
     revealedCards[card.id] = 1
     card.style.backgroundColor = "#fff"
-    // card.style.transform = "rotateY(180deg)"
     card.classList.toggle("flip")
     card.innerText = emoji
 }
@@ -93,21 +83,18 @@ const reveal = (card, emoji) => {
 const cover = (card) => {
     revealedCards[card.id] = 0
     card.style.backgroundColor = "var(--primary-color)";
-    // card.style.transform = "rotateY(0deg)"
     card.classList.toggle("flip")
     card.innerText = "";
 }
 
-const resetGame = () => {
-    const cards = grid.querySelectorAll(".card")
-    cards.forEach((card) => {
-        cover(card)
-    })
-    // console.log("cards covered")    
+const resetGame = () => {  
     createCards()
-    // console.log("cards created")
     hidePopup()
-    // console.log("popup-hidden")
+    setTimeout(() => {
+        cards.forEach((card) => {
+            cover(card);
+        });
+    }, 1);
     popupMovesPara.forEach(para => {
         para.style.animation = "none"
     })
@@ -159,7 +146,6 @@ const gameWon = () => {
     if(bestTime[level].time===null || time<bestTime[level].time){
         celebrate()
         popupTimePara.style.animation = "zoom 1s 3"
-        // bestTime.time = time
         bestTimeSpan.innerText = bestTime[level].time = time
         movesInBestTime.innerText = bestTime[level].moves = moves
         missesInBestTime.innerText = bestTime[level].misses = misses
@@ -169,8 +155,6 @@ const gameWon = () => {
         popupMovesPara.forEach(para => {
             para.style.animation = "zoom 1s 3"
         })
-        // popupMovesPara.style.animation = "zoom 1s 3"
-        // bestMoves.moves = moves
         bestMovesSpan.innerText = bestMoves[level].moves = moves
         timeForBestMoves.innerText = bestMoves[level].time = time
         missesInBestMoves.innerText = bestMoves[level].misses = misses
@@ -181,11 +165,9 @@ const gameWon = () => {
         interval=null
     }
     showPopup()
-    // resetGame()
 }
 
 const createCards = () => {
-    // console.log("LEVEL = "+level)
     if(bestMoves[level].moves!==null){
         bestMovesSpan.innerText = bestMoves[level].moves
         timeForBestMoves.innerText = bestMoves[level].time
@@ -237,21 +219,17 @@ const createCards = () => {
         div.classList.add("card")
         div.id = i
         grid.appendChild(div)
-        cover(div)
         div.addEventListener("click", () => {
-            // console.log(div.id)
-            // console.log(revealedCards[div.id])
             if(revealedCards[div.id]!==1){
                 playAudio(flipAudio)
                 if(moves===0 && lastClickedDiv===null){
                     interval = setInterval(()=>{
-                        time++;
+                        time++
                         currentTime.innerText = time
                     }, 1000)
                 }
                 reveal(div, emojis[level][i])
                 if(lastClickedDiv!==null){
-                    // console.log(lastClickedDiv.innerText)
                     moves+=1
                     currentMoves.innerText = moves
                     if(lastClickedDiv.innerText!==div.innerText){
@@ -282,9 +260,11 @@ const createCards = () => {
         })
     }
     const cards = grid.querySelectorAll(".card")
-    cards.forEach((card) => {
-        cover(card)
-    })
+    setTimeout(() => {
+        cards.forEach((card) => {
+            cover(card);
+        });
+    }, 1);
 }
 
 reset.addEventListener("click", () => {
@@ -306,7 +286,6 @@ nextLevelButton.addEventListener("click", () => {
         alert("You have completed all levels. Congratulations!")
     }
     resetGame()
-    // createCards()
 })
 
 popupNextLevelButton.addEventListener("click", () => {
@@ -316,7 +295,6 @@ popupNextLevelButton.addEventListener("click", () => {
         alert("You have completed all levels. Congratulations!")
     }
     resetGame()
-    // createCards()
 })
 
 createCards()

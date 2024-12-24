@@ -36,10 +36,6 @@
 
 body{
     background-color: var(--bg-color);
-    /* height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center; */
 }
 
 .outer-container{
@@ -52,11 +48,9 @@ body{
 }
 
 .container{
-    /* position: fixed; */
     background-color: var(--secondary-color);
     width: 40vw;
     height: 90vh;
-    /* margin-top: 50px; */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -68,8 +62,6 @@ body{
     height: 90vh;
     display: flex;
     flex-direction: column;
-    /* justify-content: space-between; */
-    /* justify-content: center; */
     align-items: center;
 }
 
@@ -78,7 +70,6 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    /* justify-content: center; */
     align-items: center;
 }
 
@@ -87,7 +78,6 @@ body{
     flex-direction: column;
     padding: 5% 5%;
     border-radius: 3px;
-    /* background-color: #229b7f; */
     background-color: var(--secondary-color);
     margin-top: auto;
     margin-bottom: auto;
@@ -101,8 +91,6 @@ body{
     padding-top: 3%;
     padding-bottom: 3%;
     border-radius: 5px;
-    /* justify-content: space-between; */
-    /* margin-bottom: 5%; */
 }
 
 .tracker-div{
@@ -110,11 +98,8 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    /* width: 20vw; */
     padding: 10px;
-    /* background-color: #229b7f; */
     border-radius: 5px;
-    /* margin-left: 10vw; */
 }
 
 .best-records-h3{
@@ -124,13 +109,11 @@ body{
 .tracker-para{
     color: #fff;
     display: inline-block;
-    /* background-color: red; */
     width: max-content;
     align-self: center;
     font-size: 1.5vw;
     margin: 0;
     font-family: 'Salsa', cursive;
-    /* width: 100%; */
 }
 
 .best-time-div p, .best-moves-div p{
@@ -139,7 +122,6 @@ body{
     font-style:italic;
     margin: 0;
     font-family: 'Salsa', cursive;
-    /* width: 100%; */
 }
 
 
@@ -181,7 +163,6 @@ h3{
 }
 
 .winPopup{
-    /* display:flex; */
     flex-direction: column;
     position: fixed;
     top: 50%;
@@ -203,18 +184,13 @@ h3{
     background-color: var(--secondary-color);
     border-radius: 6px;
     margin: 3% 0%;
-    /* height: 50%; */
     height: 50%;
     padding: 5%;
     font-size: 1.3vw;
-    /* animation: zoom 1s 3; */
 }
 
 .popup-buttons{
-    /* display: flex; */
-    /* justify-content: space-around; */
     margin-top: 5%;
-    /* vertical-align: middle; */
 }
 
 
@@ -260,7 +236,6 @@ button{
     position: absolute;
     top: 10px;
     right: 10px;
-    /* margin-left: auto; */
     background-color: var(--bg-color);
     padding: 0px;
 }
