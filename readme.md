@@ -48,6 +48,7 @@ memory-game/
 
 ## Contributions
 Contributions are welcome! Feel free to submit a pull request or open an issue for suggestions or bug fixes.
+
 ---
 
 Enjoy the game and challenge yourself to achieve the best records!
