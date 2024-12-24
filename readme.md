@@ -6,7 +6,6 @@ The Memory Game is a fun, interactive web-based game where players match pairs o
 ## Features
 - **Dynamic Themes**: Each level has a unique color theme (e.g., green for easy, orange for medium, red for hard).
 - **Performance Tracking**: Tracks the best time, fewest moves, and misses for every level.
-- **Responsive Design**: Adapts to various screen sizes for a seamless user experience.
 - **Levels**: Three levels of increasing difficulty with more cards at higher levels.
 - **Reset and Next Level Buttons**: Restart the current level or advance to the next level.
 
@@ -42,26 +41,10 @@ memory-game/
 |-- media/             # Folder for audio files and other assets
 ```
 
-## Customization
-### Adding New Levels
-1. Update the CSS grid properties in `script.js` to define the layout for the new level.
-2. Add a new theme by extending the `changeTheme` function in `script.js`.
-3. Update the JavaScript logic to handle additional levels.
-
-### Changing Themes
-Modify the CSS variables in `style.css`:
-```css
---primary-color: <color>;
---secondary-color: <color>;
---bg-color: <color>;
---button-color: <color>;
-```
-
 ## Future Enhancements
-- **Sound Effects**: Add different sounds for matches, mismatches, and level completion.
 - **Leaderboard**: Implement a leaderboard to compare scores across multiple players.
 - **Advanced Levels**: Add more levels with unique challenges.
-- **Animations**: Enhance the UI with animations for card flips and level transitions.
+- **Responsive Design**: Adapt to various screen sizes for a seamless user experience.
 
 ## Contributions
 Contributions are welcome! Feel free to submit a pull request or open an issue for suggestions or bug fixes.
