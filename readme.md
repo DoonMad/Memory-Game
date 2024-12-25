@@ -10,7 +10,7 @@ The Memory Game is a fun, interactive web-based game where players match pairs o
 - **Reset and Next Level Buttons**: Restart the current level or advance to the next level.
 
 ## How to Play
-1. Open the game in your browser.
+1. Open [this link](https://memory-game-nu-sepia.vercel.app/) in your browser.
 2. Click on cards to reveal their hidden symbols.
 3. Match pairs of cards to clear the board.
 4. Complete the level in the fewest moves and time to set records.
@@ -20,26 +20,6 @@ The Memory Game is a fun, interactive web-based game where players match pairs o
 - **HTML**: For the structure of the game.
 - **CSS**: For styling, including themes and animations.
 - **JavaScript**: For game logic, performance tracking, and dynamic theme switching.
-
-## Installation
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/DoonMad/Memory-Game
-   ```
-2. Navigate to the project directory:
-   ```bash
-   cd memory-game
-   ```
-3. Open the `index.html` file in your browser to start the game.
-
-## File Structure
-```
-memory-game/
-|-- index.html         # Main HTML file
-|-- style.css          # CSS for styling
-|-- script.js          # JavaScript for game logic
-|-- media/             # Folder for audio files and other assets
-```
 
 ## Future Enhancements
 - **Leaderboard**: Implement a leaderboard to compare scores across multiple players.
