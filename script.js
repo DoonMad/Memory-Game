@@ -16,9 +16,9 @@ const movesSpan = document.querySelector("#final-moves")
 const timeSpan = document.querySelector("#final-time")
 const missesSpan = document.querySelector("#final-misses")
 const outerContainer = document.querySelector(".outer-container")
-const currentMoves = document.querySelector("#current-moves")
-const currentTime = document.querySelector("#current-time")
-const currentMisses = document.querySelector("#current-misses")
+const currentMoves = document.querySelectorAll(".current-moves")
+const currentTime = document.querySelectorAll(".current-time")
+const currentMisses = document.querySelectorAll(".current-misses")
 const bestMovesSpan = document.querySelector("#best-moves")
 const missesInBestMoves = document.querySelector("#misses-in-best-moves")
 const timeForBestMoves = document.querySelector("#time-for-best-moves")
@@ -99,9 +99,18 @@ const resetGame = () => {
     misses = 0
     lastClickedDiv=null
     time = 0
-    currentTime.innerText = time
-    currentMoves.innerText = moves
-    currentMisses.innerText = misses
+    // currentTime.innerText = time
+    currentMoves.forEach(i => {
+        i.innerText = moves
+    });
+    currentMisses.forEach(i => {
+        i.innerText = misses
+    });
+    currentTime.forEach(i => {
+        i.innerText = time
+    });
+    // currentMoves.innerText = moves
+    // currentMisses.innerText = misses
     if(interval!==null){
         clearInterval(interval)
         interval=null
@@ -154,7 +163,9 @@ const gameWon = () => {
         timeForBestMoves.innerText = bestMoves[level].time = time
         missesInBestMoves.innerText = bestMoves[level].misses = misses
     }
-    currentTime.innerText = time
+    currentTime.forEach(i => {
+        i.innerText = time
+    });
     if(interval!==null){
         clearInterval(interval)
         interval=null
@@ -220,16 +231,25 @@ const createCards = () => {
                 if(moves===0 && lastClickedDiv===null){
                     interval = setInterval(()=>{
                         time++
-                        currentTime.innerText = time
+                        // currentTime.innerText = time
+                        currentTime.forEach(i => {
+                            i.innerText = time
+                        });
                     }, 1000)
                 }
                 reveal(div, emojis[level][i])
                 if(lastClickedDiv!==null){
                     moves+=1
-                    currentMoves.innerText = moves
+                    // currentMoves.innerText = moves
+                    currentMoves.forEach(i => {
+                        i.innerText = moves
+                    });
                     if(lastClickedDiv.innerText!==div.innerText){
                         misses++
-                        currentMisses.innerText = misses
+                        // currentMisses.innerText = misses
+                        currentMisses.forEach(i => {
+                            i.innerText = misses
+                        });
                         const clickedDiv = lastClickedDiv
                         const currentDiv = div
                         setTimeout(()=>{
@@ -287,7 +307,7 @@ popupNextLevelButton.addEventListener("click", () => {
     level++
     if(level==3){
         level=0
-        alert("You have completed all levels. Congratulations!")
+        alert("There are no more levels 🥲")
     }
     resetGame()
 })
