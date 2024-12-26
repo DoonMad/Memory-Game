@@ -8,6 +8,7 @@ The Memory Game is a fun, interactive web-based game where players match pairs o
 - **Performance Tracking**: Tracks the best time, fewest moves, and misses for every level.
 - **Levels**: Three levels of increasing difficulty with more cards at higher levels.
 - **Reset and Next Level Buttons**: Restart the current level or advance to the next level.
+- **Responsive Design**: Adapt to various screen sizes for a seamless user experience.
 
 ## How to Play
 1. Open [this link](https://memory-game-nu-sepia.vercel.app/) in your browser.
@@ -24,7 +25,6 @@ The Memory Game is a fun, interactive web-based game where players match pairs o
 ## Future Enhancements
 - **Leaderboard**: Implement a leaderboard to compare scores across multiple players.
 - **Advanced Levels**: Add more levels with unique challenges.
-- **Responsive Design**: Adapt to various screen sizes for a seamless user experience.
 
 ## Contributions
 Contributions are welcome! Feel free to submit a pull request or open an issue for suggestions or bug fixes.
