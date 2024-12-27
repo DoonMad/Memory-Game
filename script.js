@@ -32,6 +32,7 @@ const flipAudio = new Audio("media/flip.wav")
 const correctAudio = new Audio("media/correct.wav")
 const confettiAudio = new Audio("media/confetti.mp3")
 const nextLevelButton = document.querySelector(".next-level")
+const prevLevelButton = document.querySelector(".prev-level")
 const popupNextLevelButton = document.querySelector(".next-level-popup")
 var cardsTurned = 0, moves = 0, time=0, interval=null, misses=0, level=0
 var bestTime = [
@@ -203,6 +204,8 @@ const createCards = () => {
         root.style.setProperty('--secondary-color', '#c14c27');
         root.style.setProperty('--bg-color', '#4e342e');
         root.style.setProperty('--button-color', '#bf360c');
+        nextLevelButton.style.display="inline-block"
+        prevLevelButton.style.display="inline-block"
     }
     else if(level==2){
         root.style.setProperty('--columns', 6);
@@ -211,6 +214,8 @@ const createCards = () => {
         root.style.setProperty('--secondary-color', '#7c0e0e');
         root.style.setProperty('--bg-color', '#311b1b');
         root.style.setProperty('--button-color', '#8e0000');
+        nextLevelButton.style.display="none"
+        prevLevelButton.style.display="inline-block"
     }
     else{
         root.style.setProperty('--columns', 4);
@@ -219,6 +224,8 @@ const createCards = () => {
         root.style.setProperty('--secondary-color', '#0d614e');
         root.style.setProperty('--bg-color', '#093a2f');
         root.style.setProperty('--button-color', '#264c3d');
+        prevLevelButton.style.display="none"
+        nextLevelButton.style.display="inline-block"
     }
     for(let i=0; i<16+4*level; i++){
         const div=document.createElement("div")
@@ -300,6 +307,10 @@ nextLevelButton.addEventListener("click", () => {
         level=0
         alert("You have completed all levels. Congratulations!")
     }
+    resetGame()
+})
+prevLevelButton.addEventListener("click", () => {
+    level--
     resetGame()
 })
 
