@@ -198,8 +198,8 @@ const createCards = () => {
     grid.innerHTML = ""
     shuffleEmojis()
     if(level==1){
-        root.style.setProperty('--columns', 5);
-        root.style.setProperty('--rows', 4);
+        root.style.setProperty('--columns', 4);
+        root.style.setProperty('--rows', 5);
         root.style.setProperty('--primary-color', '#ffa726');
         root.style.setProperty('--secondary-color', '#c14c27');
         root.style.setProperty('--bg-color', '#4e342e');
@@ -208,8 +208,8 @@ const createCards = () => {
         prevLevelButton.style.display="inline-block"
     }
     else if(level==2){
-        root.style.setProperty('--columns', 6);
-        root.style.setProperty('--rows', 4);
+        root.style.setProperty('--columns', 4);
+        root.style.setProperty('--rows', 6);
         root.style.setProperty('--primary-color', '#e53935');
         root.style.setProperty('--secondary-color', '#7c0e0e');
         root.style.setProperty('--bg-color', '#311b1b');

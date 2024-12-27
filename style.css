@@ -147,8 +147,10 @@ h3{
 
 .grid{
     display: grid;
-    grid-template-columns: repeat(var(--columns),6vw);
-    grid-template-rows: repeat(var(--rows),13vh);
+    width: 90%;
+    height: 80%;
+    grid-template-columns: repeat(var(--columns),1fr);
+    grid-template-rows: repeat(var(--rows),1fr);
     padding: 25px;
     gap: 10px;
 }
