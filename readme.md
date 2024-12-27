@@ -11,7 +11,7 @@ The Memory Game is a fun, interactive web-based game where players match pairs o
 - **Responsive Design**: Adapt to various screen sizes for a seamless user experience.
 
 ## How to Play
-1. Open [this link](https://memory-game-nu-sepia.vercel.app/) in your browser.
+1. Open [this link](https://memory-game-nu-sepia.vercel.app/) in your browser. (Or [this](https://doonmad.github.io/Memory-Game/) one.)
 2. Click on cards to reveal their hidden symbols.
 3. Match pairs of cards to clear the board.
 4. Complete the level in the fewest moves and time to set records.
